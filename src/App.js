@@ -1,18 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
+// src/App.js
+import React, { lazy, Suspense } from 'react';
 
-function App() {
+const MyLazyComponent = lazy(() => import('./MyLazyComponent'));
+const MyComponent = lazy(() => import('./MyComponent1'));
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-         My first React app hosted on server
-      </header>
+    <div>
+      <Suspense fallback={<div>Loading...</div>}>
+        <MyComponent />
+        <MyLazyComponent />
+      </Suspense>
     </div>
   );
-}
+};
 
 export default App;
